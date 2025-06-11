@@ -192,9 +192,21 @@ class GroupLeaveScenarioTest extends TestCase
 
         // Verify transition timeline
         $lastOldTeamMessage = end($oldTeamMessages)->getCreatedAt();
-        $this->assertLessThan($reassignmentDate, $lastOldTeamMessage, 'Last old team activity before reassignment');
-        $this->assertGreaterThanOrEqual($reassignmentDate, $firstNewTeamMessage->getCreatedAt(), 'New team activity after reassignment');
-        $this->assertGreaterThan($firstNewTeamMessage->getCreatedAt(), $leaveOldTeamDate, 'Leaves old team after joining new team');
+        $this->assertLessThan(
+            $reassignmentDate,
+            $lastOldTeamMessage,
+            'Last old team activity before reassignment'
+        );
+        $this->assertGreaterThanOrEqual(
+            $reassignmentDate,
+            $firstNewTeamMessage->getCreatedAt(),
+            'New team activity after reassignment'
+        );
+        $this->assertGreaterThan(
+            $firstNewTeamMessage->getCreatedAt(),
+            $leaveOldTeamDate,
+            'Leaves old team after joining new team'
+        );
 
         // Verify different teams
         $this->assertNotEquals($oldTeamGroup->getId(), $newTeamGroup->getId());

@@ -76,7 +76,8 @@ class ChatEdgeCasesTest extends TestCase
     public function testMessageWithSpecialCharactersAndCode(): void
     {
         // Edge case: Message containing code snippets and special characters
-        $codeMessage = "Here's a quick fix:\n```php\nfunction test(\$var) {\n    return \$var > 0 ? 'positive' : 'negative';\n}\n```\nThis should handle the edge case where \$var === 0";
+        $codeMessage = "Here's a quick fix:\n```php\nfunction test(\$var) {\n    return \$var > 0 ? " .
+            "'positive' : 'negative';\n}\n```\nThis should handle the edge case where \$var === 0";
 
         $message = new Message(
             id: 1,

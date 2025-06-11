@@ -90,7 +90,10 @@ class UserAction
             ]);
         } catch (\Exception $e) {
             Logger::error('Error retrieving user', ['error' => $e->getMessage()]);
-            return $this->responseService->serverError($response, 'An error occurred while retrieving user information');
+            return $this->responseService->serverError(
+                $response,
+                'An error occurred while retrieving user information'
+            );
         }
     }
 

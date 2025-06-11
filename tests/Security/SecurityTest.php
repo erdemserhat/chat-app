@@ -131,7 +131,8 @@ class SecurityTest extends TestCase
     public function testXMLExternalEntityAttemptInMessage(): void
     {
         // Security test: XXE (XML External Entity) attempt
-        $xxeAttempt = '<?xml version="1.0"?><!DOCTYPE root [<!ENTITY read SYSTEM "file:///etc/passwd">]><root>&read;</root>';
+        $xxeAttempt = '<?xml version="1.0"?><!DOCTYPE root [<!ENTITY read SYSTEM ' .
+            '"file:///etc/passwd">]><root>&read;</root>';
         $message = new Message(
             id: 1,
             groupId: 1,

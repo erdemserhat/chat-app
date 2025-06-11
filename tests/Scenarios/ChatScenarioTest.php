@@ -254,7 +254,9 @@ class ChatScenarioTest extends TestCase
             $content = $message->getContent();
 
             // Count emojis (simple check for common emoji characters)
-            if (preg_match('/[\x{1F600}-\x{1F64F}]|[\x{1F300}-\x{1F5FF}]|[\x{1F680}-\x{1F6FF}]|[\x{1F1E0}-\x{1F1FF}]|[\x{2600}-\x{26FF}]|[\x{2700}-\x{27BF}]/u', $content)) {
+            $emojiPattern = '/[\x{1F600}-\x{1F64F}]|[\x{1F300}-\x{1F5FF}]|[\x{1F680}-\x{1F6FF}]|' .
+                '[\x{1F1E0}-\x{1F1FF}]|[\x{2600}-\x{26FF}]|[\x{2700}-\x{27BF}]/u';
+            if (preg_match($emojiPattern, $content)) {
                 $emojiCount++;
             }
 

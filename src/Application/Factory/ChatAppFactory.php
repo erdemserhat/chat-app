@@ -69,7 +69,13 @@ class ChatAppFactory
         $errorHandler = new HttpErrorHandler($app->getCallableResolver(), $responseFactory);
 
         // Create Shutdown Handler
-        $shutdownHandler = new ShutdownHandler($request, $errorHandler, $displayErrorDetails, $logError, $logErrorDetails);
+        $shutdownHandler = new ShutdownHandler(
+            $request,
+            $errorHandler,
+            $displayErrorDetails,
+            $logError,
+            $logErrorDetails
+        );
         register_shutdown_function($shutdownHandler);
 
         // Add Error Middleware
