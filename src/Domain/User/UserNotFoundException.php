@@ -12,4 +12,4 @@ class UserNotFoundException extends DomainException
     {
         parent::__construct('The user you requested does not exist.');
     }
-} 
+}

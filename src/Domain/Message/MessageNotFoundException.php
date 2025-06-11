@@ -12,4 +12,4 @@ class MessageNotFoundException extends DomainException
     {
         parent::__construct('The message you requested does not exist.');
     }
-} 
+}
