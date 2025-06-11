@@ -49,13 +49,18 @@ jobs:
               if: matrix.analysis
               run: vendor/bin/phpstan
 
-            - name: Tests
-              run: vendor/bin/phpunit --coverage-clover clover.xml
-
-            - name: Upload coverage results to Coveralls
+            - name: Tests with coverage
               if: matrix.analysis
-              env:
-                  COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: |
-                  composer require php-coveralls/php-coveralls -n -W
-                  vendor/bin/php-coveralls --coverage_clover=clover.xml -v
+              run: vendor/bin/phpunit --coverage-clover clover.xml --coverage-text
+
+            - name: Tests without coverage
+              if: "!matrix.analysis"
+              run: vendor/bin/phpunit
+
+            - name: Upload coverage artifact
+              if: matrix.analysis
+              uses: actions/upload-artifact@v4
+              with:
+                  name: coverage-report
+                  path: clover.xml
+                  retention-days: 30
