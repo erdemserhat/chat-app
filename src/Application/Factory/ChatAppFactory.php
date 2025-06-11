@@ -72,9 +72,7 @@ class ChatAppFactory
         $shutdownHandler = new ShutdownHandler(
             $request,
             $errorHandler,
-            $displayErrorDetails,
-            $logError,
-            $logErrorDetails
+            $displayErrorDetails
         );
         register_shutdown_function($shutdownHandler);
 

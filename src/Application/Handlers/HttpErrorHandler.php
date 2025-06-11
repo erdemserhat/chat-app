@@ -71,11 +71,11 @@ class HttpErrorHandler extends SlimErrorHandler
                 ActionError::NOT_IMPLEMENTED,
                 'Not implemented'
             );
-        } elseif ($exception instanceof DomainRecordNotFoundException) {
-            $statusCode = 404;
+        } elseif ($exception instanceof ChatGroupNameAlreadyExistsFoundException) {
+            $statusCode = 409;
             $error = new ActionError(
-                ActionError::RESOURCE_NOT_FOUND,
-                $exception->getMessage()
+                ActionError::VALIDATION_ERROR,
+                'Chat group name already exists'
             );
         } elseif ($exception instanceof UserNotFoundException) {
             $statusCode = 404;
@@ -83,17 +83,17 @@ class HttpErrorHandler extends SlimErrorHandler
                 ActionError::RESOURCE_NOT_FOUND,
                 'User not found'
             );
-        } elseif ($exception instanceof ChatGroupNameAlreadyExistsFoundException) {
-            $statusCode = 404;
-            $error = new ActionError(
-                ActionError::RESOURCE_NOT_FOUND,
-                'Chat group not found'
-            );
         } elseif ($exception instanceof MessageNotFoundException) {
             $statusCode = 404;
             $error = new ActionError(
                 ActionError::RESOURCE_NOT_FOUND,
                 'Message not found'
+            );
+        } elseif ($exception instanceof DomainRecordNotFoundException) {
+            $statusCode = 404;
+            $error = new ActionError(
+                ActionError::RESOURCE_NOT_FOUND,
+                $exception->getMessage()
             );
         }
 

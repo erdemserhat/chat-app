@@ -8,5 +8,8 @@ use App\Domain\DomainException\DomainRecordNotFoundException;
 
 class ChatGroupNameAlreadyExistsFoundException extends DomainRecordNotFoundException
 {
-    public $message = 'The chat group name is already in use';
+    public function __construct()
+    {
+        parent::__construct('The chat group name is already in use');
+    }
 }

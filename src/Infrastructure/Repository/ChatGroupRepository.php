@@ -7,6 +7,7 @@ namespace App\Infrastructure\Repository;
 use App\Domain\ChatGroup\ChatGroup;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
+use RuntimeException;
 
 class ChatGroupRepository
 {
@@ -33,7 +34,7 @@ class ChatGroupRepository
         );
 
         if (!$result) {
-            throw new Exception('Failed to create chat group');
+            throw new RuntimeException('Failed to create chat group');
         }
 
         return new ChatGroup(
