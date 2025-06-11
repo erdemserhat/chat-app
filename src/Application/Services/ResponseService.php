@@ -53,4 +53,4 @@ class ResponseService
         $error = new ActionError(ActionError::FORBIDDEN, $message);
         return $this->error($response, $error, 403);
     }
-} 
+}

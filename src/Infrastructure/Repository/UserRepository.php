@@ -75,7 +75,7 @@ class UserRepository
     public function findAll(): array
     {
         $results = $this->connection->fetchAllAssociative('SELECT * FROM users');
-        
+
         return array_map(function ($result) {
             return new User(
                 (int) $result['id'],
@@ -84,4 +84,4 @@ class UserRepository
             );
         }, $results);
     }
-} 
+}

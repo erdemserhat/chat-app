@@ -24,4 +24,4 @@ class ChatGroupNameAlreadyExistsFoundExceptionTest extends TestCase
 
         throw new ChatGroupNameAlreadyExistsFoundException();
     }
-} 
+}

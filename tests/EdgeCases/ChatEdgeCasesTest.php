@@ -77,7 +77,7 @@ class ChatEdgeCasesTest extends TestCase
     {
         // Edge case: Message containing code snippets and special characters
         $codeMessage = "Here's a quick fix:\n```php\nfunction test(\$var) {\n    return \$var > 0 ? 'positive' : 'negative';\n}\n```\nThis should handle the edge case where \$var === 0";
-        
+
         $message = new Message(
             id: 1,
             groupId: 1,
@@ -95,7 +95,7 @@ class ChatEdgeCasesTest extends TestCase
     {
         // Edge case: Messages sent at the exact same timestamp
         $timestamp = new DateTime('2024-01-01 12:00:00.123456');
-        
+
         $message1 = new Message(1, 1, 1, 'First message', $timestamp);
         $message2 = new Message(2, 1, 2, 'Second message', $timestamp);
         $message3 = new Message(3, 1, 3, 'Third message', $timestamp);
@@ -103,7 +103,7 @@ class ChatEdgeCasesTest extends TestCase
         $this->assertEquals($timestamp, $message1->getCreatedAt());
         $this->assertEquals($timestamp, $message2->getCreatedAt());
         $this->assertEquals($timestamp, $message3->getCreatedAt());
-        
+
         // They should still be distinguishable by ID
         $this->assertNotEquals($message1->getId(), $message2->getId());
         $this->assertNotEquals($message2->getId(), $message3->getId());
@@ -157,7 +157,7 @@ class ChatEdgeCasesTest extends TestCase
         for ($i = 0; $i < 10; $i++) {
             $timestamp = clone $baseTime;
             $timestamp->modify("+{$i} milliseconds");
-            
+
             $rapidMessages[] = new Message(
                 id: $i + 1,
                 groupId: 1,
@@ -176,7 +176,7 @@ class ChatEdgeCasesTest extends TestCase
         // Verify timestamps are in order
         for ($i = 1; $i < count($rapidMessages); $i++) {
             $this->assertGreaterThanOrEqual(
-                $rapidMessages[$i-1]->getCreatedAt(),
+                $rapidMessages[$i - 1]->getCreatedAt(),
                 $rapidMessages[$i]->getCreatedAt()
             );
         }
@@ -244,7 +244,7 @@ class ChatEdgeCasesTest extends TestCase
     {
         // Edge case: Maximum integer values for IDs
         $maxInt = PHP_INT_MAX;
-        
+
         $user = new User($maxInt, 'max_user', new DateTime());
         $group = new ChatGroup(
             id: $maxInt,
@@ -270,7 +270,7 @@ class ChatEdgeCasesTest extends TestCase
         // Edge case: Messages around daylight saving time transition
         $beforeDST = new DateTime('2024-03-10 01:59:59'); // US Spring forward
         $afterDST = new DateTime('2024-03-10 03:00:00');   // 2 AM doesn't exist
-        
+
         $message1 = new Message(1, 1, 1, 'Before DST', $beforeDST);
         $message2 = new Message(2, 1, 1, 'After DST', $afterDST);
 
@@ -278,4 +278,4 @@ class ChatEdgeCasesTest extends TestCase
         $this->assertEquals($beforeDST, $message1->getCreatedAt());
         $this->assertEquals($afterDST, $message2->getCreatedAt());
     }
-} 
+}

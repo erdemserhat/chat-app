@@ -43,4 +43,4 @@ class UserTest extends TestCase
 
         $this->assertEquals($username, $user->getUsername());
     }
-} 
+}

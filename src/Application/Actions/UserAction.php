@@ -24,7 +24,7 @@ class UserAction
     {
         try {
             $data = $request->getParsedBody();
-            
+
             // Validate request
             $validationError = $this->validator->validateCreateRequest($data);
             if ($validationError) {
@@ -53,7 +53,6 @@ class UserAction
                 'id' => $user->getId(),
                 'username' => $user->getUsername(),
             ], 201);
-
         } catch (\Exception $e) {
             Logger::error('Error creating user', ['error' => $e->getMessage()]);
             return $this->responseService->serverError($response, 'An error occurred while creating the user');
@@ -89,7 +88,6 @@ class UserAction
                 'username' => $user->getUsername(),
                 'created_at' => $user->getCreatedAt()->format('Y-m-d H:i:s')
             ]);
-
         } catch (\Exception $e) {
             Logger::error('Error retrieving user', ['error' => $e->getMessage()]);
             return $this->responseService->serverError($response, 'An error occurred while retrieving user information');
@@ -106,7 +104,6 @@ class UserAction
             $userList = array_map([$this, 'formatUser'], $users);
 
             return $this->responseService->success($response, $userList);
-
         } catch (\Exception $e) {
             Logger::error('Error listing users', ['error' => $e->getMessage()]);
             return $this->responseService->serverError($response, 'An error occurred while retrieving user list');
@@ -121,4 +118,4 @@ class UserAction
             'created_at' => $user->getCreatedAt()->format('Y-m-d H:i:s')
         ];
     }
-} 
+}

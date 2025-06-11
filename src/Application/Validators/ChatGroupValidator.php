@@ -72,4 +72,4 @@ class ChatGroupValidator
 
         return trim($name);
     }
-} 
+}

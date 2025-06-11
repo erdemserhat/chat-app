@@ -15,7 +15,7 @@ class Logger
     {
         if (self::$logger === null) {
             self::$logger = new MonologLogger('chat-app');
-            
+
             // Create logs directory if it doesn't exist
             $logDir = __DIR__ . '/../../../logs';
             if (!is_dir($logDir)) {
@@ -43,4 +43,4 @@ class Logger
     {
         self::getLogger()->debug($message, $context);
     }
-} 
+}

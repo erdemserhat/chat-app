@@ -285,4 +285,4 @@ class SecurityTest extends TestCase
         $this->assertEquals($sessionFixation, $user->getUsername());
         $this->assertStringContainsString('PHPSESSID', $user->getUsername());
     }
-} 
+}

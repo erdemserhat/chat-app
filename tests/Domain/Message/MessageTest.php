@@ -67,4 +67,4 @@ class MessageTest extends TestCase
 
         $this->assertEquals($content, $message->getContent());
     }
-} 
+}

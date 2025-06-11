@@ -61,11 +61,9 @@ class ChatGroupAction
                 'created_by' => $group->getCreatedBy(),
                 'created_at' => $group->getCreatedAt()->format('Y-m-d H:i:s')
             ], 201);
-
         } catch (UniqueConstraintViolationException $e) {
             Logger::error('Group name already exists', ['name' => $name ?? 'unknown']);
             return $this->responseService->conflict($response, 'A group with this name already exists');
-
         } catch (\Exception $e) {
             Logger::error('Error creating chat group', ['error' => $e->getMessage()]);
             return $this->responseService->serverError($response, 'An error occurred while creating the chat group');
@@ -89,10 +87,12 @@ class ChatGroupAction
             }, $groups);
 
             return $this->responseService->success($response, $groupData);
-
         } catch (\Exception $e) {
             Logger::error('Error listing chat groups', ['error' => $e->getMessage()]);
-            return $this->responseService->serverError($response, 'An error occurred while retrieving the chat group list');
+            return $this->responseService->serverError(
+                $response,
+                'An error occurred while retrieving the chat group list'
+            );
         }
     }
 
@@ -131,7 +131,10 @@ class ChatGroupAction
                     'user_id' => $userId,
                     'group_id' => $groupId
                 ]);
-                return $this->responseService->validationError($response, 'User is already a member of this group');
+                return $this->responseService->validationError(
+                    $response,
+                    'User is already a member of this group'
+                );
             }
 
             // Add user to group
@@ -147,7 +150,6 @@ class ChatGroupAction
                 'group_name' => $group->getName(),
                 'user_id' => $userId
             ]);
-
         } catch (\Exception $e) {
             Logger::error('Error joining chat group', ['error' => $e->getMessage()]);
             return $this->responseService->serverError($response, 'An error occurred while joining the chat group');
@@ -198,7 +200,10 @@ class ChatGroupAction
                     'user_id' => $userId,
                     'group_id' => $groupId
                 ]);
-                return $this->responseService->forbidden($response, 'Group creator cannot leave the group. Transfer ownership or delete the group instead.');
+                return $this->responseService->forbidden(
+                    $response,
+                    'Group creator cannot leave the group. Transfer ownership or delete the group instead.'
+                );
             }
 
             // Remove user from group
@@ -222,10 +227,9 @@ class ChatGroupAction
                 'group_name' => $group->getName(),
                 'user_id' => $userId
             ]);
-
         } catch (\Exception $e) {
             Logger::error('Error leaving chat group', ['error' => $e->getMessage()]);
             return $this->responseService->serverError($response, 'An error occurred while leaving the chat group');
         }
     }
-} 
+}

@@ -38,4 +38,4 @@ class ActionPayload implements JsonSerializable
 
         return $this->data ?? [];
     }
-} 
+}

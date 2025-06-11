@@ -32,11 +32,11 @@ class UserActionTest extends TestCase
         $this->validator = $this->createMock(UserValidator::class);
         $this->responseService = $this->createMock(ResponseService::class);
         $this->userAction = new UserAction($this->userRepository, $this->validator, $this->responseService);
-        
+
         $this->request = $this->createMock(ServerRequestInterface::class);
         $this->response = $this->createMock(ResponseInterface::class);
         $this->stream = $this->createMock(StreamInterface::class);
-        
+
         $this->response->method('getBody')->willReturn($this->stream);
         $this->response->method('withStatus')->willReturnSelf();
         $this->response->method('withHeader')->willReturnSelf();
@@ -165,4 +165,4 @@ class UserActionTest extends TestCase
         // Assert
         $this->assertSame($this->response, $result);
     }
-} 
+}

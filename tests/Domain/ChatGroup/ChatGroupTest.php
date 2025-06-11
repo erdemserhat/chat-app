@@ -55,4 +55,4 @@ class ChatGroupTest extends TestCase
 
         $this->assertEquals($name, $chatGroup->getName());
     }
-} 
+}

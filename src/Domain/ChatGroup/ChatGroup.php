@@ -35,4 +35,4 @@ class ChatGroup
     {
         return $this->createdAt;
     }
-} 
+}

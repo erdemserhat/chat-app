@@ -25,7 +25,10 @@ class UserValidator
         }
 
         if (!preg_match('/^[a-zA-Z0-9_.-]+$/', $username)) {
-            return new ActionError(ActionError::VALIDATION_ERROR, 'Username can only contain letters, numbers, dots, hyphens and underscores');
+            return new ActionError(
+                ActionError::VALIDATION_ERROR,
+                'Username can only contain letters, numbers, dots, hyphens and underscores'
+            );
         }
 
         return null;
@@ -48,4 +51,4 @@ class UserValidator
 
         return trim($username);
     }
-} 
+}

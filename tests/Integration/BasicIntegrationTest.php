@@ -38,7 +38,7 @@ class BasicIntegrationTest extends TestCase
         $this->assertEquals($user->getId(), $chatGroup->getCreatedBy());
         $this->assertEquals($chatGroup->getId(), $message->getGroupId());
         $this->assertEquals($user->getId(), $message->getUserId());
-        
+
         // Verify message belongs to the right context
         $this->assertTrue($this->messagesBelongsToUserAndGroup($message, $user, $chatGroup));
     }
@@ -60,7 +60,7 @@ class BasicIntegrationTest extends TestCase
 
     private function messagesBelongsToUserAndGroup(Message $message, User $user, ChatGroup $chatGroup): bool
     {
-        return $message->getUserId() === $user->getId() 
+        return $message->getUserId() === $user->getId()
             && $message->getGroupId() === $chatGroup->getId();
     }
-} 
+}

@@ -26,7 +26,7 @@ class ChatGroupRepository
         ]);
 
         $id = (int) $this->connection->lastInsertId();
-        
+
         $result = $this->connection->fetchAssociative(
             'SELECT * FROM chat_groups WHERE id = ?',
             [$id]
@@ -174,4 +174,4 @@ class ChatGroupRepository
 
         return (int) $result > 0;
     }
-} 
+}

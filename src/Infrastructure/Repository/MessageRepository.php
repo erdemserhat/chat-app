@@ -27,7 +27,7 @@ class MessageRepository
         ]);
 
         $id = (int) $this->connection->lastInsertId();
-        
+
         $result = $this->connection->fetchAssociative(
             'SELECT * FROM messages WHERE id = ?',
             [$id]
@@ -68,6 +68,4 @@ class MessageRepository
             );
         }, $results);
     }
-
-
-} 
+}

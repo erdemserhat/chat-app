@@ -28,7 +28,7 @@ class Database
     public static function initialize(): void
     {
         $connection = self::getConnection();
-        
+
         // Create database directory if it doesn't exist
         $dbDir = dirname($connection->getParams()['path']);
         if (!is_dir($dbDir)) {
@@ -44,4 +44,4 @@ class Database
             $connection->executeStatement($sql);
         }
     }
-} 
+}

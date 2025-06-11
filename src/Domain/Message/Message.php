@@ -45,4 +45,4 @@ class Message
     {
         return $this->createdAt;
     }
-} 
+}

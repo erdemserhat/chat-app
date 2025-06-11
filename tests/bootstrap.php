@@ -6,4 +6,4 @@ declare(strict_types=1);
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Set timezone
-date_default_timezone_set('UTC'); 
+date_default_timezone_set('UTC');

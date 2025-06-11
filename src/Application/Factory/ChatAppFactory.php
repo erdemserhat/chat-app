@@ -85,4 +85,4 @@ class ChatAppFactory
         // Run app
         $app->run();
     }
-} 
+}

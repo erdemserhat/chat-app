@@ -20,11 +20,10 @@ class MessageAction
     private UserRepository $userRepository;
 
     public function __construct(
-        MessageRepository   $messageRepository,
+        MessageRepository $messageRepository,
         ChatGroupRepository $chatGroupRepository,
-        UserRepository      $userRepository
-    )
-    {
+        UserRepository $userRepository
+    ) {
         $this->messageRepository = $messageRepository;
         $this->chatGroupRepository = $chatGroupRepository;
         $this->userRepository = $userRepository;
@@ -112,7 +111,6 @@ class MessageAction
             ]);
             $response->getBody()->write(json_encode($payload));
             return $response->withStatus(201)->withHeader('Content-Type', 'application/json');
-
         } catch (\Exception $e) {
             // Handle unexpected error
             Logger::error('Error creating message', ['error' => $e->getMessage()]);
@@ -225,7 +223,6 @@ class MessageAction
 
             $response->getBody()->write(json_encode($payload));
             return $response->withHeader('Content-Type', 'application/json');
-
         } catch (\Exception $e) {
             // Handle unexpected error
             Logger::error('Error listing messages', ['error' => $e->getMessage()]);
