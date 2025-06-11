@@ -1,0 +1,77 @@
+{
+    "name": "chat-app/slim-chat-api",
+    "description": "A modern chat application API built with Slim Framework 4 following Clean Architecture principles",
+    "keywords": [
+        "chat",
+        "api",
+        "slim",
+        "messaging",
+        "real-time",
+        "clean-architecture",
+        "php",
+        "rest",
+        "microframework"
+    ],
+    "homepage": "https://github.com/your-username/chat-app",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Serhat Erdem",
+            "email": "serhaterdem961@gmail.com",
+            "homepage": "https://github.com/erdemserhat"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "doctrine/dbal": "^4.2",
+        "monolog/monolog": "^2.8",
+        "php-di/php-di": "^6.4",
+        "slim/psr7": "^1.5",
+        "slim/slim": "^4.10",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "jangregor/phpstan-prophecy": "^1.0.0",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpstan/extension-installer": "^1.2.0",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5.26",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        },
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public",
+        "start:8081": "php -S localhost:8081 -t public",
+        "start:8082": "php -S localhost:8082 -t public",
+        "start:3000": "php -S localhost:3000 -t public",
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage",
+        "test:unit": "phpunit tests/Domain/ tests/Application/",
+        "test:integration": "phpunit tests/Integration/",
+        "test:scenarios": "phpunit tests/Scenarios/",
+        "phpstan": "phpstan analyse src tests --level=8",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "setup-db": "php scripts/setup_database.php",
+        "demo": "php scripts/demo_api.php",
+        "kill-server": "lsof -ti:8080 | xargs kill -9 2>/dev/null || true"
+    }
+}
